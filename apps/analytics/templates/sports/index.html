@@ -307,26 +307,36 @@
                         <h3>Lorem Ipsum is simply dummy text..</h3>
                      </div>
                   </aside>
+               
                   <h4>Match Fixture</h4>
                   <aside id="sidebar" class="left-bar">
                      <div class="feature-matchs">
-                        <div class="team-btw-match">
-                           {% for match in matches %}
-                           <ul>
-                              <li>
-                                 <img src="/static/images/img-01_002.png" alt="">
-                                 <span>{{ match.home_team}}</span>
-                              </li>
-                              <li class="vs"><span>vs</span></li>
-                              <li>
-                                 <img src="/static/images/img-02.png" alt="">
-                                 <span>{{ match.away_team}}</span>
-                              </li>
-                           </ul>
-                           {% empty %}
-                              <p>Нет матчей на сегодня.</p>
-                           {% endfor %}
-                        </div>
+                           <div class="team-btw-match">
+                              {% for match in matches %}
+                              <ul>
+                                 <li>
+                                       <img src="/static/images/img-01_002.png" alt="">
+                                       <span>{{ match.home_team }}</span>
+                                 </li>
+                                 <li class="vs"><span>vs</span></li>
+                                 <li>
+                                       <img src="/static/images/img-02.png" alt="">
+                                       <span>{{ match.away_team }}</span>
+                                 </li>
+                                 <li>
+                                       <button class="toggle-favorite" data-match-id="{{ match.id }}" data-favorite="{{ match.is_favorite }}">
+                                          {% if match.is_favorite %}
+                                             Удалить из избранного
+                                          {% else %}
+                                             Добавить в избранное
+                                          {% endif %}
+                                       </button>
+                                 </li>
+                              </ul>
+                              {% empty %}
+                                 <p>Нет матчей на сегодня.</p>
+                              {% endfor %}
+                           </div>
                      </div>
                   </aside>
                   <h4>Points Table</h4>
@@ -595,6 +605,7 @@
          </div>
       </footer>
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+      <script src="/static/js/match.js"></script>
       <!-- ALL JS FILES -->
       <script src="/static/js/all.js"></script>
       <!-- ALL PLUGINS -->

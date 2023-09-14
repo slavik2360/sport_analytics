@@ -192,6 +192,10 @@ class Match(models.Model):
         on_delete=models.CASCADE,
         related_name='match_on_stadium'
     )
+    is_favorite = models.BooleanField(
+        verbose_name='избранное',
+        default=False
+    )
 
     class Meta:
         ordering = ('id',)
